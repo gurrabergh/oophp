@@ -1,11 +1,20 @@
 ---
+views:
+    byline:
+        region: main
+        template: anax/v2/block/default
+        sort: 2
+        data:
+            meta:
+                type: single
+                route: block/byline
 title: "Min fina titel"
 ---
 Min me-sida i kursen oophp
 =========================
 
 [FIGURE src="image/me.jpg?w=400" class="right" caption="Bild på mig"]
-Detta är min me-sida i kursen. 
+Detta är min me-sida i kursen.
 
 Hej! Jag heter Gustav Berg och är 23 år gammal. Född och uppvuxen i Umeå där jag fortfarande bor kvar. Jag tog studenten från Teknikprogrammet 2015 och har sedan dess jobbat på ett Ica Kvantum. Har även testat att läsa några månader på Teknisk Datavetenskap (Civilingenjör) men det kändes inte helt rätt.
 
