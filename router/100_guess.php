@@ -2,9 +2,6 @@
 /**
  * Create routes using $app programming style.
  */
-//var_dump(array_keys(get_defined_vars()));
-
-
 
 /**
  * Inint the game and redirect to play game
