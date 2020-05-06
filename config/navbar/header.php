@@ -68,5 +68,15 @@ return [
             "url" => "dice-game",
             "title" => "Dice Game",
         ],
+        [
+            "text" => "Dice Game(C)",
+            "url" => "dice-gameC",
+            "title" => "Dice Game(C)",
+        ],
+        [
+            "text" => "Movies",
+            "url" => "movie/show",
+            "title" => "Movies database",
+        ],
     ],
 ];

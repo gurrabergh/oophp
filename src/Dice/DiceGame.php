@@ -4,8 +4,10 @@ namespace GB\Dice;
 /**
  *
  */
-class DiceGame
+class DiceGame implements HistogramInterface
 {
+    use HistogramTrait;
+
     private $playerScore;
     private $cpuScore;
     private $turn;
@@ -13,6 +15,9 @@ class DiceGame
     private $lastRoll;
     private $pot;
     private $cpuMessage;
+    private $serie = [];
+    private $min;
+    private $max;
 
     public function __construct()
     {
@@ -32,6 +37,9 @@ class DiceGame
     {
         $res = $this->dices->roll();
         $this->lastRoll = $res;
+        foreach ($res as $key) {
+            array_push($this->serie, $key);
+        }
         $this->cpuMessage = null;
         if (in_array(1, $res)) {
             $this->changeTurn();
@@ -40,7 +48,11 @@ class DiceGame
         }
         $this->pot += array_sum($res);
         if ($this->turn == "cpu") {
-            $this->saveCpuSum();
+            if ($this->cpuScore < $this->playerScore) {
+                $this->saveCpuSum();
+            } elseif ($this->pot > 14 or ($this->cpuScore + $this->pot >= 100)) {
+                $this->saveCpuSum();
+            }
             return;
         }
     }
@@ -137,5 +149,28 @@ class DiceGame
     public function getTurn()
     {
         return $this->turn;
+    }
+
+    public function getAsText()
+    {
+        $string = "";
+        $num = array_count_values($this->serie);
+        ksort($num);
+        $array = [];
+
+        for ($i=$this->min; $i <=$this->max; $i++) {
+            $array[$i] = 0;
+        }
+        foreach ($num as $key => $value) {
+            $array[$key] = $value;
+        }
+        foreach ($array as $key => $value) {
+            $string .= strval($key) . ": ";
+            for ($i=0; $i < $value; $i++) {
+                $string .= "*";
+            }
+            $string .= "\n";
+        }
+        return $string;
     }
 }
