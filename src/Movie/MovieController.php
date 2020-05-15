@@ -103,7 +103,6 @@ class MovieController implements AppInjectableInterface
     public function createActionGet()
     {
         $this->app->db->connect();
-        $title = "Movie edit | oophp";
         $sql = "INSERT INTO movie (title, year, image) VALUES (?, ?, ?);";
         $this->app->db->execute($sql, ["A title", 2017, "img/noimage.png"]);
         $movieId = $this->app->db->lastInsertId();
@@ -132,7 +131,6 @@ class MovieController implements AppInjectableInterface
     public function editActionPost() : object
     {
         $this->app->db->connect();
-        $title = "Movie database | oophp";
         $movieId    = $this->app->request->getPost("movieId");
         $movieTitle = $this->app->request->getPost("movieTitle");
         $movieYear  = $this->app->request->getPost("movieYear");
@@ -166,7 +164,6 @@ class MovieController implements AppInjectableInterface
     public function deleteActionPost() : object
     {
         $this->app->db->connect();
-        $title = "Movie database | oophp";
         $movieId    = $this->app->request->getPost("movieId");
 
         $sql = "DELETE FROM movie WHERE id = ?;";
